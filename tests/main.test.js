@@ -21,13 +21,22 @@ describe("Calculate discount function", () =>{
     
 })
 
-describe("Filter products function",
-    () =>{
-beforeEach(() =>{
-    sampleArray = ['Pepsi','Coke','Sprite','Dr. Pepper','Mr. Pibb'];
-})
+describe("Filter products function",() =>{
+    beforeEach(() =>{
+        sampleArray = ['Pepsi','Coke','Sprite','Dr. Pepper','Mr. Pibb'];
+    })
+
     test('Should return an empty array if callback is not a function.', () =>{
         expect(filterProducts(sampleArray, "string")).toEqual([]);
     })  
+
+    test('Should return an empty array if array is not an array', () =>{
+        expect(filterProducts('string', () => {})).toEqual([]);
+    }) 
+
+    test('Should return an array coke.', () =>{
+        const resultArray = filterProducts(sampleArray, sampleArray => sampleArray.includes("C"));
+        expect(resultArray).toEqual(['Coke']);
+    }) 
 }
 )
